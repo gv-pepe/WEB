@@ -1,3 +1,4 @@
+console.log("hola")
 const firebaseConfig = {
     apiKey: "AIzaSyBNSS_nbz1M5zbPIjVjgQqmcLyOsp4tFlc",
     authDomain: "examenmauricio-db808.firebaseapp.com",
