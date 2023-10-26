@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,8 @@
             color: #fff;
             padding: 10px;
         }
-        .p{
+
+        .p {
             font-size: 20px;
             color: black;
         }
@@ -76,11 +78,12 @@
             display: block;
             margin: 10px 0;
         }
-        
+
 
         /* Añade más estilos personalizados según tus preferencias */
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <div class="user-info">
@@ -101,7 +104,8 @@
                         <form>
                             <div class="mb-3">
                                 <label for="codigoFormulario" class="form-label">Código de formulario</label>
-                                <input type="text" class="form-control" id="codigoFormulario" placeholder="Ingresa el código">
+                                <input type="text" class="form-control" id="codigoFormulario"
+                                    placeholder="Ingresa el código">
                             </div>
                             <button type="button" class="btn btn-primary" id="empezarBtn">Empezar</button>
                         </form>
@@ -117,7 +121,9 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <div id="formularioContent"></div> <!-- Aquí se mostrará el contenido del formulario -->
-                        <button class="btn btn-primary" id="btnComparar" onclick="compararRespuestas(document.getElementById('codigoFormulario').value)">Comparar Respuestas</button>
+                        <button class="btn btn-primary" id="btnComparar"
+                            onclick="compararRespuestas(document.getElementById('codigoFormulario').value)">Comparar
+                            Respuestas</button>
 
 
                         <div id="resultadoComprobacion"></div> <!-- Aquí se mostrarán los resultados -->
@@ -126,8 +132,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
@@ -136,15 +142,15 @@
 
     <script>
         const firebaseConfig = {
-    apiKey: "AIzaSyBNSS_nbz1M5zbPIjVjgQqmcLyOsp4tFlc",
-    authDomain: "examenmauricio-db808.firebaseapp.com",
-    databaseURL: "https://examenmauricio-db808-default-rtdb.firebaseio.com",
-    projectId: "examenmauricio-db808",
-    storageBucket: "examenmauricio-db808.appspot.com",
-    messagingSenderId: "818692025535",
-    appId: "1:818692025535:web:b36baca2f51bd91918ea0a",
-    measurementId: "G-V56XN42HWN"
-};
+            apiKey: "AIzaSyBNSS_nbz1M5zbPIjVjgQqmcLyOsp4tFlc",
+            authDomain: "examenmauricio-db808.firebaseapp.com",
+            databaseURL: "https://examenmauricio-db808-default-rtdb.firebaseio.com",
+            projectId: "examenmauricio-db808",
+            storageBucket: "examenmauricio-db808.appspot.com",
+            messagingSenderId: "818692025535",
+            appId: "1:818692025535:web:b36baca2f51bd91918ea0a",
+            measurementId: "G-V56XN42HWN"
+        };
 
         firebase.initializeApp(firebaseConfig);
 
@@ -160,126 +166,125 @@
         }
 
         function mostrarCuestionario(codigoFormulario) {
-    const db = firebase.database();
-    const formularioContent = document.getElementById("formularioContent");
+            const db = firebase.database();
+            const formularioContent = document.getElementById("formularioContent");
 
-    // Primero, verifica si el cuestionario existe en la base de datos
-    const formulariosRef = db.ref("cuestionarios").child(codigoFormulario);
+            // Primero, verifica si el cuestionario existe en la base de datos
+            const formulariosRef = db.ref("cuestionarios").child(codigoFormulario);
 
-    formulariosRef.once("value", function(snapshot) {
-        const formularioData = snapshot.val();
+            formulariosRef.once("value", function (snapshot) {
+                const formularioData = snapshot.val();
 
-        if (formularioData) {
-            formularioContent.innerHTML = "";
+                if (formularioData) {
+                    formularioContent.innerHTML = "";
 
-            formularioData.preguntas.forEach((pregunta, index) => {
-                const preguntaItem = document.createElement("div");
-                preguntaItem.className = "pregunta";
+                    formularioData.preguntas.forEach((pregunta, index) => {
+                        const preguntaItem = document.createElement("div");
+                        preguntaItem.className = "pregunta";
 
-                const preguntaTexto = document.createElement("p");
-                preguntaTexto.textContent = `Pregunta ${index + 1}: ${pregunta.pregunta}`;
-                preguntaItem.appendChild(preguntaTexto);
+                        const preguntaTexto = document.createElement("p");
+                        preguntaTexto.textContent = `Pregunta ${index + 1}: ${pregunta.pregunta}`;
+                        preguntaItem.appendChild(preguntaTexto);
 
-                if (pregunta.tipo === "radio") {
-                    pregunta.opciones.forEach((opcion, i) => {
-                        const opcionLabel = document.createElement("label");
-                        opcionLabel.innerHTML = `<input type="radio" name="respuesta_${index}" value="${i}"> ${opcion.texto}<br>`;
-                        preguntaItem.appendChild(opcionLabel);
-                        preguntaItem.appendChild(document.createElement("br")); // Salto de línea
+                        if (pregunta.tipo === "radio") {
+                            pregunta.opciones.forEach((opcion, i) => {
+                                const opcionLabel = document.createElement("label");
+                                opcionLabel.innerHTML = `<input type="radio" name="respuesta_${index}" value="${i}"> ${opcion.texto}<br>`;
+                                preguntaItem.appendChild(opcionLabel);
+                                preguntaItem.appendChild(document.createElement("br")); // Salto de línea
+                            });
+                        } else if (pregunta.tipo === "text") {
+                            const textInput = document.createElement("input");
+                            textInput.type = "text";
+                            preguntaItem.appendChild(textInput);
+                            preguntaItem.appendChild(document.createElement("br")); // Salto de línea
+                        }
+
+                        formularioContent.appendChild(preguntaItem);
                     });
-                } else if (pregunta.tipo === "text") {
-                    const textInput = document.createElement("input");
-                    textInput.type = "text";
-                    preguntaItem.appendChild(textInput);
-                    preguntaItem.appendChild(document.createElement("br")); // Salto de línea
+                } else {
+                    alert('Formulario no encontrado');
+                    location.reload();
+
                 }
-
-                formularioContent.appendChild(preguntaItem);
             });
-        } else {
-            alert('Formulario no encontrado');
-            location.reload();
-
         }
-    });
-}
 
 
 
     </script>
     <script>
-        document.getElementById('empezarBtn').addEventListener('click', function() {
+        document.getElementById('empezarBtn').addEventListener('click', function () {
             const codigoFormulario = document.getElementById('codigoFormulario').value;
-            mostrarCuestionario(codigoFormulario);
-            toggleElement("empezarBtn", "o")
+            verificarRespuestaUsuario(codigoFormulario);
+            toggleElement("empezarBtn", "o");
         });
-
         const reload = () => {
             location.reload()
         }
     </script>
 
-<script>
-    function compararRespuestas(codigoFormulario) {
-    const db = firebase.database();
+    <script>
+        function compararRespuestas(codigoFormulario) {
+            const db = firebase.database();
 
-    // Verifica si el cuestionario existe en la base de datos
-    const formulariosRef = db.ref("cuestionarios").child(codigoFormulario);
+            // Verifica si el cuestionario existe en la base de datos
+            const formulariosRef = db.ref("cuestionarios").child(codigoFormulario);
 
-    formulariosRef.once("value", function (snapshot) {
-        const formularioData = snapshot.val();
+            formulariosRef.once("value", function (snapshot) {
+                const formularioData = snapshot.val();
 
-        if (formularioData) {
-            const preguntas = formularioData.preguntas;
+                if (formularioData) {
+                    const preguntas = formularioData.preguntas;
 
-            let respuestasCorrectas = 0;
-            let respuestasIncorrectas = 0;
-            let respuestasTotal = 0;
+                    let respuestasCorrectas = 0;
+                    let respuestasIncorrectas = 0;
+                    let respuestasTotal = 0;
 
-            preguntas.forEach((pregunta, index) => {
-                const tipo = pregunta.tipo;
-                toggleElement("btnComparar", "o")
-                toggleElement("formularioContent", "o")
-                if (tipo === 'radio' || tipo === 'checkbox') {
-                    const opciones = document.querySelectorAll(`input[name="respuesta_${index}"]`);
-                    const respuestaCorrecta = pregunta.opciones.findIndex(opcion => opcion.esCorrecta);
+                    preguntas.forEach((pregunta, index) => {
+                        const tipo = pregunta.tipo;
+                        toggleElement("btnComparar", "o")
+                        toggleElement("formularioContent", "o")
+                        if (tipo === 'radio' || tipo === 'checkbox') {
+                            const opciones = document.querySelectorAll(`input[name="respuesta_${index}"]`);
+                            const respuestaCorrecta = pregunta.opciones.findIndex(opcion => opcion.esCorrecta);
 
-                    opciones.forEach((opcion) => {
-                        const respuestaSeleccionada = parseInt(opcion.value.charAt(opcion.value.length - 1));
+                            opciones.forEach((opcion) => {
+                                const respuestaSeleccionada = parseInt(opcion.value.charAt(opcion.value.length - 1));
 
-                        if (opcion.checked) {
+                                if (opcion.checked) {
+                                    respuestasTotal++;
+
+                                    if (respuestaSeleccionada === respuestaCorrecta) {
+                                        respuestasCorrectas++;
+                                    } else {
+                                        respuestasIncorrectas++;
+                                    }
+                                }
+                            });
+                        } else if (tipo === 'text') {
+                            const textoRespuesta = document.querySelector(`input[name="respuesta_${index}"]`);
+                            const respuestaCorrecta = pregunta.opciones[0].texto.toLowerCase().trim();
                             respuestasTotal++;
 
-                            if (respuestaSeleccionada === respuestaCorrecta) {
+                            // Obtener y formatear la respuesta ingresada por el usuario
+                            const respuestaUsuario = textoRespuesta.value.toLowerCase().trim();
+
+                            if (respuestaUsuario === respuestaCorrecta) {
                                 respuestasCorrectas++;
                             } else {
                                 respuestasIncorrectas++;
                             }
                         }
                     });
-                } else if (tipo === 'text') {
-                    const textoRespuesta = document.querySelector(`input[name="respuesta_${index}"]`);
-                    const respuestaCorrecta = pregunta.opciones[0].texto.toLowerCase().trim();
-                    respuestasTotal++;
 
-                    // Obtener y formatear la respuesta ingresada por el usuario
-                    const respuestaUsuario = textoRespuesta.value.toLowerCase().trim();
+                    // Calcula el porcentaje de respuestas correctas
+                    const calificacion = (respuestasCorrectas / respuestasTotal) * 100;
 
-                    if (respuestaUsuario === respuestaCorrecta) {
-                        respuestasCorrectas++;
-                    } else {
-                        respuestasIncorrectas++;
-                    }
-                }
-            });
-
-            // Calcula el porcentaje de respuestas correctas
-            const calificacion = (respuestasCorrectas / respuestasTotal) * 100;
-
-            // Actualiza un elemento `div` con el id 'resultadoComprobacion' para mostrar los resultados
-            const resultadoComprobacion = document.getElementById('resultadoComprobacion');
-            resultadoComprobacion.classList.remove('hidden'); // Muestra el elemento
-            resultadoComprobacion.innerHTML = `
+                    // Actualiza un elemento `div` con el id 'resultadoComprobacion' para mostrar los resultados
+                    const resultadoComprobacion = document.getElementById('resultadoComprobacion');
+                    resultadoComprobacion.classList.remove('hidden'); // Muestra el elemento
+                    resultadoComprobacion.innerHTML = `
                 <div style="text-align: center; background-color: #f5f5f5; padding: 20px;">
                     <h3 style="color: #333;">Resultados del Cuestionario</h3>
                     <p style="font-size: 18px;">Calificación: ${calificacion.toFixed(2)}%</p>
@@ -290,34 +295,75 @@
                     </div>
                 </div>
             `;
-             // Obtén el nombre de usuario desde localStorage o donde lo almacenes
-             const nombreUsuario = localStorage.getItem("nombreUsuario");
-             const contesto = true; // Define si el usuario contestó
+                    // Obtén el nombre de usuario desde localStorage o donde lo almacenes
+                    const nombreUsuario = localStorage.getItem("nombreUsuario");
+                    const contesto = true; // Define si el usuario contestó
 
 
-             const contestadosRef = db.ref("Contestados").push();
-            contestadosRef.set({
-                nombre: nombreUsuario,
-                cal: calificacion.toFixed(2),
-                codigoFormulario: codigoFormulario,
-                contesto: contesto, // Campo "contesto"
+                    const contestadosRef = db.ref("Contestados").push();
+                    contestadosRef.set({
+                        nombre: nombreUsuario,
+                        cal: calificacion.toFixed(2),
+                        codigoFormulario: codigoFormulario,
+                        contesto: contesto, // Campo "contesto"
+                    });
+
+                } else {
+                    alert("Formulario no encontrado.");
+                }
             });
-
-        } else {
-            alert("Formulario no encontrado.");
         }
-    });
-}
 
-function toggleElement(id, accion) {
-    var elemento = document.getElementById(id);
-    if (accion == "o") {
-        elemento.style.display = "none";
-    } else if (accion == "m") {
-        elemento.style.display = "block";
-    }
-}
+        function toggleElement(id, accion) {
+            var elemento = document.getElementById(id);
+            if (accion == "o") {
+                elemento.style.display = "none";
+            } else if (accion == "m") {
+                elemento.style.display = "block";
+            }
+        }
 
-</script>
+        // Función para verificar si el usuario ya ha respondido al cuestionario
+        function verificarRespuestaUsuario(codigoFormulario) {
+            const db = firebase.database();
+
+            // Obtén el nombre de usuario desde localStorage o donde lo almacenes
+            const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+            // Verifica en la base de datos si el usuario ya ha respondido al cuestionario
+            const contestadosRef = db.ref("Contestados");
+
+            contestadosRef.orderByChild("nombre").equalTo(nombreUsuario).once("value", function (snapshot) {
+                const contestadosData = snapshot.val();
+
+                if (contestadosData) {
+                    // El usuario ya ha respondido al cuestionario
+                    const cuestionarioContestado = Object.values(contestadosData).find(contestado => contestado.codigoFormulario === codigoFormulario);
+
+                    if (cuestionarioContestado) {
+                        // El usuario ya respondió a este cuestionario
+                        const calificacion = cuestionarioContestado.cal;
+                        const mensaje = `Ya has respondido a este cuestionario. Tu calificación obtenida es: ${calificacion}%`;
+
+                        // Muestra el mensaje en lugar del cuestionario
+                        const formularioContent = document.getElementById("formularioContent");
+                        formularioContent.innerHTML = `<p>${mensaje}</p>`;
+                    } else {
+                        // El usuario no ha respondido a este cuestionario, muestra el cuestionario
+                        mostrarCuestionario(codigoFormulario);
+                    }
+                } else {
+                    // El usuario no ha respondido a ningún cuestionario, muestra el cuestionario
+                    mostrarCuestionario(codigoFormulario);
+                }
+            });
+        }
+
+
+
+    </script>
+
+    </script>
 </body>
+
 </html>

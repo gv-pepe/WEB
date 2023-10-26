@@ -74,5 +74,46 @@ function mostrarCuestionario(codigoFormulario) {
     });
 }
 
+function verificarRespuestaUsuario(codigoFormulario) {
+    const db = firebase.database();
+    
+    // Obtén el nombre de usuario desde localStorage o donde lo almacenes
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
 
+    // Verifica en la base de datos si el usuario ya ha respondido al cuestionario
+    const contestadosRef = db.ref("Contestados");
+
+    contestadosRef.orderByChild("nombre").equalTo(nombreUsuario).once("value", function(snapshot) {
+        const contestadosData = snapshot.val();
+
+        if (contestadosData) {
+            // El usuario ya ha respondido al cuestionario
+            const cuestionarioContestado = Object.values(contestadosData).find(contestado => contestado.codigoFormulario === codigoFormulario);
+
+            if (cuestionarioContestado) {
+                // El usuario ya respondió a este cuestionario
+                const calificacion = cuestionarioContestado.cal;
+                const mensaje = `Ya has respondido a este cuestionario. Tu calificación obtenida es: ${calificacion}%`;
+                
+                // Muestra el mensaje en lugar del cuestionario
+                const formularioContent = document.getElementById("formularioContent");
+                formularioContent.innerHTML = `<p>${mensaje}</p>`;
+            } else {
+                // El usuario no ha respondido a este cuestionario, muestra el cuestionario
+                mostrarCuestionario(codigoFormulario);
+            }
+        } else {
+            // El usuario no ha respondido a ningún cuestionario, muestra el cuestionario
+            mostrarCuestionario(codigoFormulario);
+        }
+    });
+}
+
+document.getElementById('empezarBtn').addEventListener('click', function() {
+    const codigoFormulario = document.getElementById('codigoFormulario').value;
+    verificarRespuestaUsuario(codigoFormulario);
+    toggleElement("empezarBtn", "o");
+});
+
+</script>
 
