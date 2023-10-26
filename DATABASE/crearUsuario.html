@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/ESTILOS/checkbox.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuarios</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h1 class="mt-5" style="text-align: center;">Crear una nueva cuenta</h1>
+                    <div class="card-body">
+                        <img src="https://www.lostrompos.com.mx/assets/user-default-1534028036fdbd765592addc5403fc97836cbb39353a38fa06a4be250a1ca874.jpg" class="img-fluid mx-auto d-block mb-3" alt="Imagen de inicio de sesión" style="width: 100px; height: 100px;">
+                        <form action="" id="contactForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" required placeholder="Escribe tu nombre de usuario">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="correo" name="correo" required placeholder="Escribe tu email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="contra" name="password" required placeholder="Elige una contraseña">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="confirm" name="confirmPassword" required placeholder="Confirma tu contraseña">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="estudiante" name="role" value="Estudiante" checked>
+                                <label class="form-check-label" for="estudiante">Estudiante</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="maestro" name="role" value="Maestro">
+                                <label class="form-check-label" for="maestro">Maestro</label>
+                            </div><br>
+                            <a class="btn btn-secondary" href="/index.html">Regresar</a>
+                            <button id="crear" class="btn btn-primary">Crear</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="/SCRIPTS/Registro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // JavaScript to ensure only one checkbox can be selected
+        const estudianteCheckbox = document.getElementById("estudiante");
+        const maestroCheckbox = document.getElementById("maestro");
+
+        estudianteCheckbox.addEventListener("change", function() {
+            if (estudianteCheckbox.checked) {
+                maestroCheckbox.checked = false;
+            }
+        });
+
+        maestroCheckbox.addEventListener("change", function() {
+            if (maestroCheckbox.checked) {
+                estudianteCheckbox.checked = false;
+            }
+        });
+    </script>
+</body>
+</html>

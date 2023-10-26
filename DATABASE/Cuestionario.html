@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario con Radio y Texto</title>
+    <link rel="stylesheet" href="/ESTILOS/preguntas.css" />
+  </head>
+
+  <body>
+    <form id="miFormulario">
+      <input type="text" required placeholder="Título" /><br />
+      <input type="text" required placeholder="Descripción" /><br /><br />
+      <div id="preguntas">
+        <!-- Aquí se agregarán las preguntas dinámicamente -->
+      </div>
+      <div id="botonesPregunta">
+        <button type="button" onclick="agregarPregunta()">
+          Agregar otra pregunta
+        </button>
+      </div>
+    </form>
+
+    <script>
+      function agregarPregunta() {
+        const preguntasDiv = document.getElementById("preguntas");
+
+        const nuevaPregunta = document.createElement("div");
+        nuevaPregunta.innerHTML = `
+                <form>
+                    <input type="text" required placeholder="Pregunta">
+                    <select class="opcionesType" name="opcionesType" onchange="cambiarTipoOpcion(this)">
+                        <option value="radio">Radio</option>
+                        <option value="checkbox">Checkbox</option>
+                        <option value="text">Text</option>
+                    </select>
+                    <div class="opciones">
+                        <!-- Aquí se agregarán las opciones de radio y texto dinámicamente -->
+                    </div>
+                    <button type="button" onclick="agregarOpcion(this)">Agregar Opción</button>
+                    <button type="button" onclick="quitarOpcion(this)">Quitar Opción</button>
+                </form>
+            `;
+
+        preguntasDiv.appendChild(nuevaPregunta);
+      }
+
+      function agregarOpcion(btn) {
+        const pregunta = btn.closest("form");
+        const opcionesDiv = pregunta.querySelector(".opciones");
+        const inputType = pregunta.querySelector(".opcionesType").value;
+
+        const nuevaOpcion = document.createElement("div");
+
+        if (inputType === "radio") {
+          nuevaOpcion.innerHTML = `
+                    <input type="radio" name="opciones" value="opcion${
+                      opcionesDiv.childElementCount + 1
+                    }">
+                    <input type="text" name="texto${
+                      opcionesDiv.childElementCount + 1
+                    }" placeholder="Texto de la opción">
+                    <input type="radio" name="correcta" value="opcion${
+                      opcionesDiv.childElementCount + 1
+                    }"> Correcta
+                `;
+        } else if (inputType === "checkbox") {
+          nuevaOpcion.innerHTML = `
+                    <input type="checkbox" name="opciones" value="opcion${
+                      opcionesDiv.childElementCount + 1
+                    }">
+                    <input type="text" name="texto${
+                      opcionesDiv.childElementCount + 1
+                    }" placeholder="Texto de la opción">
+                    <input type="checkbox" name="correcta" value="opcion${
+                      opcionesDiv.childElementCount + 1
+                    }"> Correcta
+                `;
+        }
+        opcionesDiv.appendChild(nuevaOpcion);
+      }
+
+      function quitarOpcion(btn) {
+        const pregunta = btn.closest("form");
+        const opcionesDiv = pregunta.querySelector(".opciones");
+        if (opcionesDiv.childElementCount > 0) {
+          opcionesDiv.removeChild(opcionesDiv.lastChild);
+        }
+      }
+
+      function cambiarTipoOpcion(select) {
+        const pregunta = select.closest("form");
+        const opcionesDiv = pregunta.querySelector(".opciones");
+        const inputType = select.value;
+
+        Array.from(opcionesDiv.children).forEach((opcion, index) => {
+          if (inputType === "radio") {
+            opcion.innerHTML = `
+                        <input type="radio" name="opciones" value="opcion${
+                          index + 1
+                        }">
+                        <input type="text" name="texto${
+                          index + 1
+                        }" placeholder="Texto de la opción">
+                        <input type="radio" name="correcta" value="opcion${
+                          index + 1
+                        }"> Correcta
+                    `;
+          } else if (inputType === "checkbox") {
+            opcion.innerHTML = `
+                        <input type="checkbox" name="opciones" value="opcion${
+                          index + 1
+                        }">
+                        <input type="text" name="texto${
+                          index + 1
+                        }" placeholder="Texto de la opción">
+                        <input type="checkbox" name="correcta" value="opcion${
+                          index + 1
+                        }"> Correcta
+                    `;
+          } else if (inputType === "text") {
+            opcion.innerHTML = `
+                        <input type="text" name="texto${
+                          index + 1
+                        }" placeholder="Texto de la opción">
+                        <input type="checkbox" name="correcta" value="opcion${
+                          index + 1
+                        }"> Correcta
+                    `;
+          }
+        });
+      }
+
+      agregarPregunta();
+
+      document
+        .getElementById("quitarOpcion")
+        .addEventListener("click", function () {
+          quitarOpcion(this);
+        });
+
+      document
+        .getElementById("agregarOpcion")
+        .addEventListener("click", function () {
+          agregarOpcion(this);
+        });
+    </script>
+  </body>
+</html>

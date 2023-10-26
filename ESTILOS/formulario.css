@@ -1,0 +1,108 @@
+
+    /* Cambia el estilo de fuente de las preguntas */
+    .pregunta {
+        font-family: 'Arial', sans-serif; /* Cambia 'Arial' a la fuente que prefieras */
+        font-size: 18px; /* Tamaño de fuente */
+        font-weight: bold; /* Peso de la fuente */
+    }
+
+    #cuestionarioSeleccionado{
+        background-color: rgb(0, 0, 0);
+        padding: 20px;
+
+    }
+
+    p{
+        font-size:20px;
+    }
+    .respuesta {
+        font-family: 'Times New Roman', serif; /* Cambia 'Times New Roman' a la fuente que prefieras */
+        font-size: 24px; /* Tamaño de fuente */
+        font-weight: normal; 
+        color: black;
+    }
+
+    /* Estilo para respuestas correctas */
+    .respuesta-correcta {
+        color: green; /* Color de texto para respuestas correctas */
+    }
+
+    /* Estilo para respuestas incorrectas */
+    .respuesta-incorrecta {
+        color: red; /* Color de texto para respuestas incorrectas */
+    }
+    
+
+    /* Estilos para la página web */
+.resultados-container {
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 100%; 
+}
+
+.resultados-title {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.resultados-text {
+    font-size: 18px;
+    margin: 5px 0;
+    color: black;
+}
+
+.resultados-correct {
+    color: green;
+}
+
+.resultados-incorrect {
+    color: red;
+}
+
+body {
+            margin: 0;
+            padding: 0;
+            background: url('/ESTILOS/img/pexels-erik-mclean-6159693.jpg') center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        li, a {
+            padding: 10px;
+            background-color: black;
+            color: azure;
+            list-style: none;
+            width: 250px;
+            margin-bottom: 5px;
+            border-radius: 10px;
+        }
+
+        a {
+            margin: 20px;
+            text-decoration: none;
+        }

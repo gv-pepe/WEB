@@ -1,0 +1,25 @@
+
+    /* Cambia el estilo de fuente de las preguntas */
+    .pregunta {
+        font-family: 'Arial', sans-serif; /* Cambia 'Arial' a la fuente que prefieras */
+        font-size: 18px; /* Tamaño de fuente */
+        font-weight: bold; /* Peso de la fuente */
+    }
+
+    /* Cambia el estilo de fuente de las respuestas */
+    .respuesta {
+        font-family: 'Times New Roman', serif; /* Cambia 'Times New Roman' a la fuente que prefieras */
+        font-size: 16px; /* Tamaño de fuente */
+        font-weight: normal; /* Peso de la fuente */
+    }
+
+    /* Estilo para respuestas correctas */
+    .respuesta-correcta {
+        color: green; /* Color de texto para respuestas correctas */
+    }
+
+    /* Estilo para respuestas incorrectas */
+    .respuesta-incorrecta {
+        color: red; /* Color de texto para respuestas incorrectas */
+    }
+

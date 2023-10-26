@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario con Radio y Texto</title>
+    <link rel="stylesheet" href="/ESTILOS/preguntas.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="user-info">
+            <span class="user-icon">&#9787;</span>
+            <div>
+                <span id="user-name"></span>
+                <span id="user-email"></span>
+            </div>
+        </div>
+        <div id="log_out">
+            <button id="redireccionar">Ir a Formularios</button>
+        <button id="regresar" style="display: none;">Regresar</button>
+    
+            <img id="cerrarSesionButton" src="/ESTILOS/img/cerrar-sesion.png" alt="">
+        
+        </div>
+    </div>
+
+    <form id="miFormulario">
+        <label>
+            <center>
+                <h1>Cuestionario</h1>
+            </center>
+        </label>
+        <input type="text" id="titulo" required placeholder="Título del cuestionario"><br>
+        <input type="text" id="descripcion" required placeholder="Descripción del cuestionario"><br>
+        <div id="preguntas"></div>
+
+        <div id="Botones">
+            <button type="button" onclick="agregarPregunta()">Agregar otra pregunta</button>
+            <button type="button" id="botonGuardar" onclick="guardarCuestionario()">Guardar Cuestionario</button>
+            <button type="button" id="botonActualizar">Actualizar</button>
+        </div>
+    </form>
+    <div id="container" style="display: none; margin: 50px 50px 50px 50px; color: white;">
+        <div class="container mt-4" id="cuestionariosContainer" style="margin: 50px 50px 50px 50px;color: black">
+            <h2>Cuestionarios Disponibles</h2>
+            <ul id="listaCuestionarios" style="font-size: 24px; font-weight: bold;color: black">
+
+            </ul>
+        </div>
+
+        <div id="cuestionarioSeleccionado" style="display: none;">
+            <h2 id="tituloCuestionarioSeleccionado" style="color: black;"></h2>
+            <div>
+
+                <button class="btn btn-danger" onclick="eliminarCuestionario()">Eliminar Cuestionario</button>
+                <button class="btn btn-success" onclick="compartirCuestionario()">Compartir Cuestionario</button>
+                <button type="button" id="botonIrActualizar">Actualizar Cuestionario</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.css">
+    <script src="/SCRIPTS/generador.js"></script>
+    <!-- Puto si mueves codigo js para aca, no somos cavernicolas -->
+
+</body>
+
+</html>

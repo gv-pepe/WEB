@@ -1,0 +1,208 @@
+/* Estilos generales para el formulario */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    height: 50px;
+    width: auto;
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"] {
+    width: 400px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[name="opcionesType"] {
+    width: 400px;
+}
+
+input[id="arroz"] {
+    width: 300px;
+}
+
+input[id="titulo"] {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+input[id="descripcion"] {
+    width: 95%;
+    height: 50px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    width: 20%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #ff7300;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+/* Estilos para los botones de agregar/quitar opción */
+#agregarOpcion,
+#quitarOpcion {
+    background-color: #28a745;
+}
+
+/* Estilos para el contenedor de opciones */
+.opciones {
+    margin-top: 10px;
+}
+
+/* Estilos para el contenedor de preguntas */
+#preguntas {
+    margin: 50px, 50px, 50px, 50px;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ebe7f5;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+#log_out {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: right;
+   
+    
+}
+
+.user-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+.user-email {
+    margin-left: 10px;
+    /* Agrega margen izquierdo al correo */
+}
+
+form {
+    margin-top: 20px;
+    /* Agrega margen superior al formulario */
+}
+
+#miFormulario {
+    margin-top: 20px;
+    /* Ajusta el valor según tus necesidades */
+    margin-bottom: 20px;
+    /* Ajusta el valor según tus necesidades */
+}
+
+a {
+    border-radius: 10px;
+    background-color: black;
+    padding: 10px;
+    color: rgb(12, 11, 11);
+    text-decoration: none;
+}
+
+li{
+    color: black;
+    background-color: #ffd8b9;
+    list-style: none;
+    margin-bottom: 10px;
+    width: 20vh;
+   padding: 10px;
+   border-radius: 10px;
+   padding-left: 15px;
+   border: 1px solid #6b6b6b;
+}
+
+.h2{
+    color: black;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #ffffff;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    display: flex;
+    font-size: 40px;
+    margin-right: 10px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.user-email {
+    font-size: 14px;
+}
+
+#preguntas input[type="text"] {
+    max-width: 350px;
+}
+
+#Botones {
+    display: flex;
+    max-height: 35px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <!-- Agrega la referencia a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+
+<!-- Agrega la referencia a Bootstrap JS y jQuery al final del cuerpo para un mejor rendimiento -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+<body style="background-color: #d7eaff;"> <!-- Establece un fondo azul claro -->
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <h1 class="text-center mt-3">Bienvenido</h1>
+                <div class="card-body">
+                    <img src="https://www.lostrompos.com.mx/assets/user-default-1534028036fdbd765592addc5403fc97836cbb39353a38fa06a4be250a1ca874.jpg" class="img-fluid mx-auto d-block mb-3" alt="Imagen de inicio de sesión" style="width: 100px; height: 100px;">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <input type="text" id="username" name="username" class="form-control" required placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control" required placeholder="Contraseña">
+                        </div>
+                        <div class="text-center">
+                            <button id="iniciar" class="btn btn-success">Iniciar sesión</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="/DATABASE/crearUsuario.html" class="text-primary">Registrarse</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/SCRIPTS/inicioSesion.js"></script>
+
+
+
+
+</body>
+</html>
