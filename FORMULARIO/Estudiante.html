@@ -197,7 +197,9 @@
                 formularioContent.appendChild(preguntaItem);
             });
         } else {
-            formularioContent.innerHTML = "<p>Formulario no encontrado.</p>";
+            alert('Formulario no encontrado');
+            location.reload();
+
         }
     });
 }
