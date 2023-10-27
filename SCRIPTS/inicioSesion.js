@@ -1,10 +1,18 @@
-import {ref, db, get, set} from "./FirebaseConfig.js";
-//Colocar aqui Rutas dependiendo el rol 
+import { ref, db, get } from "./FirebaseConfig.js";
+
 var rutaEstudiante = "/FORMULARIO/Estudiante.html";
 var rutaMaestro = "/FORMULARIO/generador.html";
 
+function mostrarMensajeError(mensaje) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: mensaje,
+  });
+}
+
 function buscarElementoPorClave(clave, password) {
-  const dbRef = ref(db, "usuario/" + clave); 
+  const dbRef = ref(db, "usuario/" + clave);
   return get(dbRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -13,9 +21,9 @@ function buscarElementoPorClave(clave, password) {
         const claveEnFirebase = datosElemento.clave;
 
         if (nombreEnFirebase === clave && claveEnFirebase === password) {
-          return true; 
+          return true;
         } else {
-          // Si los datos no coinciden, cambiar los bordes de los inputs a rojo
+          mostrarMensajeError("Usuario o contraseña incorrectos");
           document.getElementById('username').style.borderColor = 'red';
           document.getElementById('password').style.borderColor = 'red';
           document.getElementById('username').style.backgroundColor = '#ffd0d0';
@@ -23,17 +31,17 @@ function buscarElementoPorClave(clave, password) {
           return false;
         }
       } else {
-        console.log("No se encontraron datos para la clave ingresada.");
-        return false; 
+          
+        mostrarMensajeError("Usuario no encontrado");
+        
+        return false;
       }
     })
     .catch((error) => {
-      console.error("Error al buscar elemento:", error);
-      return false; 
+      mostrarMensajeError("Error al buscar elemento: " + error);
+      return false;
     });
 }
-
-
 
 document.getElementById("iniciar").addEventListener("click", function () {
   var nombre = document.getElementById("username").value;
@@ -41,11 +49,7 @@ document.getElementById("iniciar").addEventListener("click", function () {
 
   buscarElementoPorClave(nombre, password).then((resultado) => {
     if (resultado) {
-      // Los datos coinciden, hacer algo en consecuencia (por ejemplo, redirigir a otra página)
       console.log("Inicio de sesión exitoso");
-    } else {
-      // Los datos no coinciden, mostrar un mensaje de error o tomar otras acciones
-      console.log("Inicio de sesión fallido");
     }
   });
 });
@@ -58,10 +62,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
 
   buscarElementoPorClave(nombre, password).then((resultado) => {
     if (resultado) {
-      // Redirigir a la página adecuada dependiendo del rol
       redirigirSegunRol(nombre);
-    } else {
-      console.log("Inicio de sesión fallido");
     }
   });
 });
@@ -80,22 +81,18 @@ function redirigirSegunRol(nombre) {
           localStorage.setItem("nombreUsuario", nombre);
           localStorage.setItem("correoUsuario", cor);
           window.location.href = rutaEstudiante;
-
         } else if (rol === "Maestro") {
           localStorage.setItem("nombreUsuario", nombre);
           localStorage.setItem("correoUsuario", cor);
           window.location.href = rutaMaestro;
         } else {
-          console.log("Rol desconocido");
+          mostrarMensajeError("Rol desconocido");
         }
       } else {
-        console.log("No se encontraron datos para el usuario.");
+        mostrarMensajeError("No se encontraron datos para el usuario");
       }
     })
     .catch((error) => {
-      console.error("Error al obtener datos del usuario:", error);
+      mostrarMensajeError("Error al obtener datos del usuario: " + error);
     });
 }
-
-
-
