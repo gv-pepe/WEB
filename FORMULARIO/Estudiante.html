@@ -345,9 +345,12 @@
                         const calificacion = cuestionarioContestado.cal;
                         const mensaje = `Ya has respondido a este cuestionario. Tu calificación obtenida es: ${calificacion}%`;
 
-                        // Muestra el mensaje en lugar del cuestionario
+                        toggleElement("btnComparar", "o")
                         const formularioContent = document.getElementById("formularioContent");
-                        formularioContent.innerHTML = `<p>${mensaje}</p>`;
+                        formularioContent.innerHTML = `<p>${mensaje}</p>
+                        <div>
+                        <button id="ok" onclick="reload()">Aceptar</button>
+                    </div>`;
                     } else {
                         // El usuario no ha respondido a este cuestionario, muestra el cuestionario
                         mostrarCuestionario(codigoFormulario);
