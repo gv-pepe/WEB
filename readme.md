@@ -4,11 +4,9 @@ Este proyecto consiste en una página web que permite a maestros y alumnos crear
 
 ## Características clave
 
-- **Creación de Formularios**: Tanto maestros como alumnos pueden crear formularios personalizados de manera intuitiva.
+- **Creación de Formularios**: Los usuarios registrados como MAestros pueden generar Cuestionarios
 
-- **Variedad de Campos**: Se ofrecen diversos tipos de campos, como texto, opciones múltiples, casillas de verificación y más.
-
-- **Distribución y Recopilación**: Los formularios pueden distribuirse a través de un enlace y los resultados se recopilan y muestran en tiempo real.
+- **Distribución y Recopilación**: Los formularios pueden distribuirse a través de un codigo generado en la interface del Maestro y los resultados se recopilan y muestran en tiempo real.
 
 - **Seguimiento de Progreso**: Permite el seguimiento del progreso de las respuestas y la generación de informes detallados.
 
