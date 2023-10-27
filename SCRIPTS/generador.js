@@ -112,8 +112,27 @@ function compartirCuestionario() {
     // Agregar un salto de línea al mensaje
     const mensaje = `\n${codigoCuestionario}`;
 
-    Swal.fire('Código del Cuestionario', mensaje, 'info');
+    Swal.fire({
+        title: 'Código del Cuestionario',
+        text: mensaje,
+        icon: 'info',
+        showCancelButton: true,
+        cancelButtonText: 'Cerrar',
+        confirmButtonText: 'Copiar al Portapapeles',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Copiar el código al portapapeles
+            const tempInput = document.createElement('input');
+            tempInput.value = codigoCuestionario;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            Swal.fire('¡Código copiado!', 'El código se ha copiado al portapapeles.', 'success');
+        }
+    });
 }
+
 
 function eliminarCuestionario() {
     Swal.fire({

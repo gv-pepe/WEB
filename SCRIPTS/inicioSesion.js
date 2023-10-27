@@ -15,6 +15,11 @@ function buscarElementoPorClave(clave, password) {
         if (nombreEnFirebase === clave && claveEnFirebase === password) {
           return true; 
         } else {
+          // Si los datos no coinciden, cambiar los bordes de los inputs a rojo
+          document.getElementById('username').style.borderColor = 'red';
+          document.getElementById('password').style.borderColor = 'red';
+          document.getElementById('username').style.backgroundColor = '#ffd0d0';
+          document.getElementById('password').style.backgroundColor = '#ffd0d0';
           return false;
         }
       } else {
@@ -27,6 +32,7 @@ function buscarElementoPorClave(clave, password) {
       return false; 
     });
 }
+
 
 
 document.getElementById("iniciar").addEventListener("click", function () {
