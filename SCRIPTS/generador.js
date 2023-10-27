@@ -188,9 +188,9 @@ function agregarPregunta() {
 
     nuevaPregunta.innerHTML = `
         <form>
-            <input type="text" name="preguntass" required placeholder="Titulo de la Pregunta">
-            <select class="opcionesType" name="opcionesType" onchange="cambiarTipoOpcion(this)">
-                <option value="radio">Multiple</option>
+            <input class="preg" type="text" name="preguntass" required placeholder="Titulo de la Pregunta">
+            <select id="quitar" style="display:none;" class="opcionesType" name="opcionesType" onchange="cambiarTipoOpcion(this)">
+                <option  value="radio">Multiple</option>
             </select>
             <div class="opciones"></div>
             <button type="button" onclick="agregarOpcion(this)">Agregar opción</button>
@@ -199,6 +199,7 @@ function agregarPregunta() {
     `;
 
     preguntasDiv.appendChild(nuevaPregunta);
+    
 }
 
 function agregarOpcion(btn) {
@@ -210,8 +211,8 @@ function agregarOpcion(btn) {
 
     if (inputType === 'radio' || inputType === 'checkbox') {
         nuevaOpcion.innerHTML = `
-            <input type="${inputType}" name="opciones" value="opcion${count}" disabled="disabled">
-            <input type="text" name="texto${count}" placeholder="Texto de la opción">
+            <input  type="${inputType}" name="opciones" value="opcion${count}" disabled="disabled">
+            <input class="respues" type="text" name="texto${count}" placeholder="Texto de la opción">
             <input type="${inputType}" name="correcta" value="opcion${count}"> Correcta
         `;
     } else if (inputType === 'text') {
@@ -363,6 +364,7 @@ irActualizar.addEventListener("click", function (event) {
     irActual()
     if (cuestionario) {
         llenarCamposDelFormulario();
+        
     } else {
         alert('Por favor, selecciona un cuestionario primero.');
     }
@@ -416,8 +418,8 @@ function llenarCamposDelFormulario() {
         const nuevaPregunta = document.createElement('div');
         nuevaPregunta.innerHTML = `
             <form>
-                <input type="text" name="preguntass" required placeholder="Titulo de la Pregunta" value="${pregunta.pregunta}">
-                <select class="opcionesType" name="opcionesType" onchange="cambiarTipoOpcion(this)">
+                <input class="preg" type="text" name="preguntass" required placeholder="Titulo de la Pregunta" value="${pregunta.pregunta}">
+                <select id="quitar" style="display:none;" class="opcionesType" name="opcionesType" onchange="cambiarTipoOpcion(this)">
                     <option value="radio" ${pregunta.tipo === 'radio' ? 'selected' : ''}>Multiple</option>
                 </select>
                 <div class="opciones"></div>
@@ -426,10 +428,13 @@ function llenarCamposDelFormulario() {
             </form>
         `;
         preguntasDiv.appendChild(nuevaPregunta);
+        
 
         const opcionesDiv = nuevaPregunta.querySelector('.opciones');
         pregunta.opciones.forEach((opcion, opIndex) => {
+            
             agregarOpciones(nuevaPregunta.querySelector('button'), pregunta.tipo, opcion.texto, opcion.esCorrecta, opIndex);
+            
         });
     });
 }

@@ -49,8 +49,11 @@ input[id="descripcion"] {
     border-radius: 5px;
 }
 
+
+
 select {
-    width: 20%;
+display: none;
+    width: 1%;
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ccc;
@@ -195,7 +198,7 @@ li{
     font-size: 14px;
 }
 
-#preguntas input[type="text"] {
+.respues {
     max-width: 350px;
 }
 
@@ -205,4 +208,8 @@ li{
     margin-top: 20px;
     margin-bottom: 20px;
     justify-content: space-around;
+}
+
+.preg {
+    width: 1px;
 }
