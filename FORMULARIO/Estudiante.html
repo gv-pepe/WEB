@@ -14,11 +14,22 @@
     <style>
         /* Estilos para el navbar */
         .navbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: right; 
+}
 
+
+img {
+    height: 50px;
+    width: auto;
+}
+        #log_out {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
         .p {
             font-size: 20px;
             color: black;
@@ -92,6 +103,12 @@
                 <span id="user-name">Nombre de Usuario</span>
                 <span id="user-email">correo@example.com</span>
             </div>
+        </div>
+        <div id="log_out">
+            <button id="regresar" style="display: none;">Regresar</button>
+
+            <img id="cerrarSesionButton" src="/ESTILOS/img/cerrar-sesion.png" alt="">
+
         </div>
     </div>
 
@@ -222,7 +239,14 @@
         const reload = () => {
             location.reload()
         }
+
+        document.getElementById("cerrarSesionButton").addEventListener("click", function() {
+    // Redirige a la página deseada
+    window.location.href = "/index.html"; // Reemplaza "URL_DE_TU_PAGINA" con la URL a la que deseas redirigir.
+  });
     </script>
+
+    
 
     <script>
         function compararRespuestas(codigoFormulario) {

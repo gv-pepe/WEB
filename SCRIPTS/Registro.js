@@ -4,7 +4,10 @@ document.getElementById("crear").addEventListener("click", function(e){
     const contrasena1= document.getElementById("contra").value;
     const contrasena2 = document.getElementById("confirm").value;
     if(contrasena1  != contrasena2){
-        alert('Las contrasenas no coinciden')
+      document.getElementById('contra').style.borderColor = 'red';
+      document.getElementById('confirm').style.borderColor = 'red';
+      document.getElementById('contra').style.backgroundColor = '#ffd0d0';
+      document.getElementById('confirm').style.backgroundColor = '#ffd0d0';
     }else{
         registrar();
     }

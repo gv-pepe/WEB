@@ -108,9 +108,7 @@ body {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
-    text-align: right;
-   
-    
+    text-align: right; 
 }
 
 .user-icon {
@@ -212,4 +210,33 @@ li{
 
 .preg {
     width: 1px;
+    width: 80%;
 }
+
+table {
+    margin-top: 50px;
+    width: 100%;
+    
+}
+
+table, td {
+    border: 1px solid #adadad;
+    border-collapse: collapse;
+    color: #000;
+}
+
+th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ff7300;
+    color: #ccc;
+    font-size: 20px;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 50%;
+}
+

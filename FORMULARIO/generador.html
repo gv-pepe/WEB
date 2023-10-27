@@ -20,10 +20,10 @@
         </div>
         <div id="log_out">
             <button id="redireccionar">Ir a Formularios</button>
-        <button id="regresar" style="display: none;">Regresar</button>
-    
+            <button id="regresar" style="display: none;">Regresar</button>
+
             <img id="cerrarSesionButton" src="/ESTILOS/img/cerrar-sesion.png" alt="">
-        
+
         </div>
     </div>
 
@@ -58,8 +58,23 @@
                 <button class="btn btn-danger" onclick="eliminarCuestionario()">Eliminar Cuestionario</button>
                 <button class="btn btn-success" onclick="compartirCuestionario()">Compartir Cuestionario</button>
                 <button type="button" id="botonIrActualizar">Actualizar Cuestionario</button>
+                <button type="button" id="botonResultados">Ver Resultados</button>
             </div>
         </div>
+
+
+        <div id="container-table" style="display: none;">
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Calificación</th>
+                </tr>
+
+                <tbody id="tablaResultados">
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 

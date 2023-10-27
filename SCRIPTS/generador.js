@@ -466,3 +466,58 @@ document.getElementById("cerrarSesionButton").addEventListener("click", function
     // Redirige a la página deseada
     window.location.href = "/index.html"; // Reemplaza "URL_DE_TU_PAGINA" con la URL a la que deseas redirigir.
   });
+
+  document.getElementById("botonResultados").addEventListener("click", function() {
+    const cuestionarioSeleccionado = document.getElementById('cuestionarioSeleccionado');
+    verResultados();
+});
+
+function mostrarResultados(codigoFormularioSeleccionado) {
+    const database = firebase.database();
+    const contestadosRef = database.ref('Contestados');
+    const tablaResultados = document.getElementById('tablaResultados');
+    tablaResultados.innerHTML = ''; // Limpia la tabla antes de llenarla con nuevos datos
+
+    contestadosRef.once('value', (snapshot) => {
+        if (snapshot.exists()) {
+            const contestadosData = snapshot.val();
+
+            for (const key in contestadosData) {
+                if (contestadosData.hasOwnProperty(key)) {
+                    const contestado = contestadosData[key];
+
+                    if (contestado.codigoFormulario === codigoFormularioSeleccionado) {
+                        // Encontraste un objeto de "Contestados" con el código de formulario coincidente
+                        const fila = document.createElement('tr');
+                        const nombreCelda = document.createElement('td');
+                        nombreCelda.textContent = contestado.nombre;
+                        const calificacionCelda = document.createElement('td');
+                        calificacionCelda.textContent = contestado.cal;
+
+                        fila.appendChild(nombreCelda);
+                        fila.appendChild(calificacionCelda);
+                        tablaResultados.appendChild(fila);
+                    }
+                }
+            }
+            toggleElement("container-table", "m")
+            if (tablaResultados.innerHTML === '') {
+                alert('Ningún usuario ha contestado el formulario seleccionado.');
+            }
+        }
+    });
+}
+
+
+
+
+
+
+function verResultados() {
+    if (cuestionario && cuestionario.key) {
+        console.log('Código del cuestionario:', cuestionario.key); // Agrega esta línea para depurar
+        mostrarResultados(cuestionario.key);
+    } else {
+        alert('Por favor, selecciona un cuestionario primero.');
+    }
+}
