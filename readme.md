@@ -1,6 +1,6 @@
 # Formulario Web para Maestros y Alumnos
 
-Este proyecto consiste en una página web que permite a maestros y alumnos crear formularios interactivos para diferentes propósitos educativos. La plataforma ofrece una forma sencilla y efectiva de recopilar información, realizar encuestas y evaluar el conocimiento.
+Este proyecto consiste en una página web que permite a maestros crear formularios interactivos para diferentes propósitos educativos. La plataforma ofrece una forma sencilla y efectiva de recopilar información, realizar encuestas y evaluar el conocimiento.
 
 ## Características clave
 
